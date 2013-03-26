@@ -1,6 +1,6 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "name": "dbu/dashboard",
+    "description": "A CLI dashboard tool for github organizations",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -8,21 +8,21 @@
         "php": ">=5.3.3",
         "symfony/symfony": "2.2.*",
         "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.1.*",
         "symfony/monolog-bundle": "2.2.*",
         "sensio/distribution-bundle": "2.2.*",
-        "sensio/generator-bundle": "2.2.*",
         "knplabs/github-api": "1.2.*@dev",
-        "kriswallsmith/assetic": "1.1.*@alpha"
+        "incenteev/composer-parameter-handler": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
@@ -38,6 +38,9 @@
         "symfony-assets-install": "symlink",
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
         }
     }
 }
