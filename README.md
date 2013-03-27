@@ -18,8 +18,10 @@ Installation
     curl -s http://getcomposer.org/installer | php
     ./composer.phar install
 
-Then copy the file app/config/parameters.yml.dist to app/config/parameters.yml
-and provide your github credentials.
+You will be prompted for your github credentials that will be stored plain text
+in app/config/parameters.yml as well as the repositories configuration.
+Configuring the repositories might be easier doing by editing the parameters.yml
+file though.
 
 (Reading would work without them, but you would be limited to 5000 requests per
 hour.)
@@ -49,7 +51,7 @@ Ideas
 License
 =======
 
-This code is (c) 2013 by David Buchmann and may be used under the Gnu Public License GPL.
+This code is (c) 2013 by David Buchmann and may be used under the GNU Public License GPL.
 
 
 Credits
