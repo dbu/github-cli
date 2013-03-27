@@ -9,28 +9,40 @@
  * file that was distributed with this source code.
  */
 
-namespace Dbu\GhCollectorBundle\Command;
+namespace Dbu\GhCollector\Command;
 
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Github\Client;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+
 
 /**
  * @license GPL
  */
-class FetchDataCommand extends ContainerAwareCommand
+class FetchDataCommand extends Command
 {
+    private $username;
+    private $password;
+    private $repositories;
+
+    public function __construct($username, $password, $repositories)
+    {
+        parent::__construct('github:fetch');
+        $this->username = $username;
+        $this->password = $password;
+        $this->repositories = $repositories;
+    }
+
     /**
      * @see Command
      */
     protected function configure()
     {
         $this
-            ->setName('github:fetch')
             ->addArgument('repository', InputArgument::IS_ARRAY, 'user or user/repository')
             ->setDescription('A command to query data from github')
             ->setHelp(<<<EOF
@@ -130,7 +142,7 @@ EOF
     {
         $users = array();
         if (! count($input->getArgument('repository'))) {
-            return $this->getContainer()->getParameter('repositories');
+            return $this->repositories;
         }
 
         foreach ($input->getArgument('repository') as $argument) {
@@ -152,8 +164,8 @@ EOF
     {
         $client = new Client;
         $client->authenticate(
-            $this->getContainer()->getParameter('github.username'),
-            $this->getContainer()->getParameter('github.password'),
+            $this->username,
+            $this->password,
             Client::AUTH_HTTP_PASSWORD
         );
         return $client;

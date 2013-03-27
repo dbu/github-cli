@@ -1,7 +1,4 @@
 parameters:
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
-
     github.username:   yourloginname
     github.password:   yourpassword
 
