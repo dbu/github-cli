@@ -14,9 +14,8 @@ product.
 Installation
 ============
 
-    git clone git://github.com/dbu/dashboard.git
     curl -s http://getcomposer.org/installer | php
-    ./composer.phar install
+    ./composer.phar create-project dbu/github-cli github-cli
 
 You will be prompted for your github credentials that will be stored plain text
 in app/config/parameters.yml as well as the repositories configuration.
