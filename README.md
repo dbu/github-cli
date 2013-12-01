@@ -1,3 +1,10 @@
+Deprecated
+==========
+
+You should rather use the [Dashboard Project](https://github.com/dbu/dashboard)
+as this repository is abandoned. All functionality from this repository has been
+ported into the dashboard project.
+
 Github Data Client
 ==================
 
